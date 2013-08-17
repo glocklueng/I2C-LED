@@ -3,6 +3,8 @@
 #include "adafruit_i2c_led_emu.h"
 #include "led.h"
 
+#define i2c_slave_address 0x70
+
 /**
   * @brief  Configure system clock 
   * @param  None
@@ -42,7 +44,7 @@ void main( void )
   ITC_Config();
   enableInterrupts();
   led_init();
-  i2c_listen(0x70, emu_on_i2c_start_write, 0, emu_on_i2c_stop, emu_on_i2c_data_received, 0);
+  i2c_listen(i2c_slave_address, emu_on_i2c_start_write, 0, emu_on_i2c_stop, emu_on_i2c_data_received, 0);
   
   while (1)
   {

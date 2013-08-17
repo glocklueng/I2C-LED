@@ -15,168 +15,169 @@ static void _led_write_segments(char ch)
   /* Character Map
    *
    *           0  1  2  3  4  5  6  7  8  9  A  B  C  D  E  F
-   * A:  PB4   0  1  0  0  1  0  0  0  0  0  0  1  0  1  0  0
-   * F:  PB5   0  1  1  1  0  0  0  1  0  0  0  0  0  1  0  0
-   * B:  PC5   0  0  0  0  0  1  1  0  0  0  0  1  1  0  1  1
-   * G:  PC6   1  1  0  0  0  0  0  1  0  0  0  0  1  0  0  0
-   * C:  PC7   0  0  1  0  0  0  0  0  0  0  0  0  1  0  1  1
-   * E:  PD1   0  1  0  1  1  1  0  1  0  1  0  0  0  0  0  0
-   * D:  PD2   0  1  0  0  1  0  0  1  0  0  1  0  0  0  0  1
+   * A:  PB5   0  1  0  0  1  0  0  0  0  0  0  1  0  1  0  0
+   * F:  PA1   0  1  1  1  0  0  0  1  0  0  0  0  0  1  0  0
+   * B:  PB4   0  0  0  0  0  1  1  0  0  0  0  1  1  0  1  1
+   * G:  PC3   1  1  0  0  0  0  0  1  0  0  0  0  1  0  0  0
+   * C:  PC4   0  0  1  0  0  0  0  0  0  0  0  0  1  0  1  1
+   * E:  PC7   0  1  0  1  1  1  0  1  0  1  0  0  0  0  0  0
+   * D:  PC6   0  1  0  0  1  0  0  1  0  0  1  0  0  0  0  1
    */
   switch (ch & 0x7f)
   {
   case 0:  // 0
+    GPIO_WriteLow(GPIOA, (GPIO_Pin_TypeDef)(GPIO_PIN_1));
     GPIO_WriteLow(GPIOB, (GPIO_Pin_TypeDef)(GPIO_PIN_4 | GPIO_PIN_5));
-    GPIO_WriteLow(GPIOC, (GPIO_Pin_TypeDef)(GPIO_PIN_5 | GPIO_PIN_7));
-    GPIO_WriteHigh(GPIOC, (GPIO_Pin_TypeDef)(GPIO_PIN_6));
-    GPIO_WriteLow(GPIOD, (GPIO_Pin_TypeDef)(GPIO_PIN_1 | GPIO_PIN_2));
+    GPIO_WriteLow(GPIOC, (GPIO_Pin_TypeDef)(GPIO_PIN_4 | GPIO_PIN_6 | GPIO_PIN_7));
+    GPIO_WriteHigh(GPIOC, (GPIO_Pin_TypeDef)(GPIO_PIN_3));
     break;
   case 1:  // 1
-    GPIO_WriteHigh(GPIOB, (GPIO_Pin_TypeDef)(GPIO_PIN_4 | GPIO_PIN_5));
-    GPIO_WriteLow(GPIOC, (GPIO_Pin_TypeDef)(GPIO_PIN_5 | GPIO_PIN_7));
-    GPIO_WriteHigh(GPIOC, (GPIO_Pin_TypeDef)(GPIO_PIN_6));
-    GPIO_WriteHigh(GPIOD, (GPIO_Pin_TypeDef)(GPIO_PIN_1 | GPIO_PIN_2));
+    GPIO_WriteHigh(GPIOA, (GPIO_Pin_TypeDef)(GPIO_PIN_1));
+    GPIO_WriteLow(GPIOB, (GPIO_Pin_TypeDef)(GPIO_PIN_4));
+    GPIO_WriteHigh(GPIOB, (GPIO_Pin_TypeDef)(GPIO_PIN_5));
+    GPIO_WriteLow(GPIOC, (GPIO_Pin_TypeDef)(GPIO_PIN_4));
+    GPIO_WriteHigh(GPIOC, (GPIO_Pin_TypeDef)(GPIO_PIN_3 | GPIO_PIN_6 | GPIO_PIN_7));
     break;
   case 2:  // 2
-    GPIO_WriteLow(GPIOB, (GPIO_Pin_TypeDef)(GPIO_PIN_4));
-    GPIO_WriteHigh(GPIOB, (GPIO_Pin_TypeDef)(GPIO_PIN_5));
-    GPIO_WriteLow(GPIOC, (GPIO_Pin_TypeDef)(GPIO_PIN_5 | GPIO_PIN_6));
-    GPIO_WriteHigh(GPIOC, (GPIO_Pin_TypeDef)(GPIO_PIN_7));
-    GPIO_WriteLow(GPIOD, (GPIO_Pin_TypeDef)(GPIO_PIN_1 | GPIO_PIN_2));
+    GPIO_WriteHigh(GPIOA, (GPIO_Pin_TypeDef)(GPIO_PIN_1));
+    GPIO_WriteLow(GPIOB, (GPIO_Pin_TypeDef)(GPIO_PIN_4 | GPIO_PIN_5));
+    GPIO_WriteLow(GPIOC, (GPIO_Pin_TypeDef)(GPIO_PIN_3 | GPIO_PIN_6 | GPIO_PIN_7));
+    GPIO_WriteHigh(GPIOC, (GPIO_Pin_TypeDef)(GPIO_PIN_4));
     break;
   case 3:  // 3
-    GPIO_WriteLow(GPIOB, (GPIO_Pin_TypeDef)(GPIO_PIN_4));
-    GPIO_WriteHigh(GPIOB, (GPIO_Pin_TypeDef)(GPIO_PIN_5));
-    GPIO_WriteLow(GPIOC, (GPIO_Pin_TypeDef)(GPIO_PIN_5 | GPIO_PIN_6 | GPIO_PIN_7));
-    GPIO_WriteHigh(GPIOD, (GPIO_Pin_TypeDef)(GPIO_PIN_1));
-    GPIO_WriteLow(GPIOD, (GPIO_Pin_TypeDef)(GPIO_PIN_2));
+    GPIO_WriteHigh(GPIOA, (GPIO_Pin_TypeDef)(GPIO_PIN_1));
+    GPIO_WriteLow(GPIOB, (GPIO_Pin_TypeDef)(GPIO_PIN_4 | GPIO_PIN_5));
+    GPIO_WriteLow(GPIOC, (GPIO_Pin_TypeDef)(GPIO_PIN_3 | GPIO_PIN_4 | GPIO_PIN_6));
+    GPIO_WriteHigh(GPIOC, (GPIO_Pin_TypeDef)(GPIO_PIN_7));
     break;
   case 4:  // 4
-    GPIO_WriteHigh(GPIOB, (GPIO_Pin_TypeDef)(GPIO_PIN_4));
-    GPIO_WriteLow(GPIOB, (GPIO_Pin_TypeDef)(GPIO_PIN_5));
-    GPIO_WriteLow(GPIOC, (GPIO_Pin_TypeDef)(GPIO_PIN_5 | GPIO_PIN_6 | GPIO_PIN_7));
-    GPIO_WriteHigh(GPIOD, (GPIO_Pin_TypeDef)(GPIO_PIN_1 | GPIO_PIN_2));
-    break;
-  case 5:  // 5
-    GPIO_WriteLow(GPIOB, (GPIO_Pin_TypeDef)(GPIO_PIN_4 | GPIO_PIN_5));
-    GPIO_WriteHigh(GPIOC, (GPIO_Pin_TypeDef)(GPIO_PIN_5));
-    GPIO_WriteLow(GPIOC, (GPIO_Pin_TypeDef)(GPIO_PIN_6 | GPIO_PIN_7));
-    GPIO_WriteHigh(GPIOD, (GPIO_Pin_TypeDef)(GPIO_PIN_1));
-    GPIO_WriteLow(GPIOD, (GPIO_Pin_TypeDef)(GPIO_PIN_2));
-    break;
-  case 6:  // 6
-    GPIO_WriteLow(GPIOB, (GPIO_Pin_TypeDef)(GPIO_PIN_4 | GPIO_PIN_5));
-    GPIO_WriteHigh(GPIOC, (GPIO_Pin_TypeDef)(GPIO_PIN_5));
-    GPIO_WriteLow(GPIOC, (GPIO_Pin_TypeDef)(GPIO_PIN_6 | GPIO_PIN_7));
-    GPIO_WriteLow(GPIOD, (GPIO_Pin_TypeDef)(GPIO_PIN_1 | GPIO_PIN_2));
-    break;
-  case 7:  // 7
+    GPIO_WriteLow(GPIOA, (GPIO_Pin_TypeDef)(GPIO_PIN_1));
     GPIO_WriteLow(GPIOB, (GPIO_Pin_TypeDef)(GPIO_PIN_4));
     GPIO_WriteHigh(GPIOB, (GPIO_Pin_TypeDef)(GPIO_PIN_5));
-    GPIO_WriteLow(GPIOC, (GPIO_Pin_TypeDef)(GPIO_PIN_5 | GPIO_PIN_7));
-    GPIO_WriteHigh(GPIOC, (GPIO_Pin_TypeDef)(GPIO_PIN_6));
-    GPIO_WriteHigh(GPIOD, (GPIO_Pin_TypeDef)(GPIO_PIN_1 | GPIO_PIN_2));
+    GPIO_WriteLow(GPIOC, (GPIO_Pin_TypeDef)(GPIO_PIN_3 | GPIO_PIN_4));
+    GPIO_WriteHigh(GPIOC, (GPIO_Pin_TypeDef)(GPIO_PIN_6 | GPIO_PIN_7));
+    break;
+  case 5:  // 5
+    GPIO_WriteLow(GPIOA, (GPIO_Pin_TypeDef)(GPIO_PIN_1));
+    GPIO_WriteLow(GPIOB, (GPIO_Pin_TypeDef)(GPIO_PIN_5));
+    GPIO_WriteHigh(GPIOB, (GPIO_Pin_TypeDef)(GPIO_PIN_4));
+    GPIO_WriteLow(GPIOC, (GPIO_Pin_TypeDef)(GPIO_PIN_3 | GPIO_PIN_4 | GPIO_PIN_6));
+    GPIO_WriteHigh(GPIOC, (GPIO_Pin_TypeDef)(GPIO_PIN_7));
+    break;
+  case 6:  // 6
+    GPIO_WriteLow(GPIOA, (GPIO_Pin_TypeDef)(GPIO_PIN_1));
+    GPIO_WriteLow(GPIOB, (GPIO_Pin_TypeDef)(GPIO_PIN_5));
+    GPIO_WriteHigh(GPIOB, (GPIO_Pin_TypeDef)(GPIO_PIN_4));
+    GPIO_WriteLow(GPIOC, (GPIO_Pin_TypeDef)(GPIO_PIN_3 | GPIO_PIN_4 | GPIO_PIN_6 | GPIO_PIN_7));
+    break;
+  case 7:  // 7
+    GPIO_WriteHigh(GPIOA, (GPIO_Pin_TypeDef)(GPIO_PIN_1));
+    GPIO_WriteLow(GPIOB, (GPIO_Pin_TypeDef)(GPIO_PIN_4 | GPIO_PIN_5));
+    GPIO_WriteLow(GPIOC, (GPIO_Pin_TypeDef)(GPIO_PIN_4));
+    GPIO_WriteHigh(GPIOC, (GPIO_Pin_TypeDef)(GPIO_PIN_3 | GPIO_PIN_6 | GPIO_PIN_7));
     break;
   case 8:  // 8
+    GPIO_WriteLow(GPIOA, (GPIO_Pin_TypeDef)(GPIO_PIN_1));
     GPIO_WriteLow(GPIOB, (GPIO_Pin_TypeDef)(GPIO_PIN_4 | GPIO_PIN_5));
-    GPIO_WriteLow(GPIOC, (GPIO_Pin_TypeDef)(GPIO_PIN_5 | GPIO_PIN_6 | GPIO_PIN_7));
-    GPIO_WriteLow(GPIOD, (GPIO_Pin_TypeDef)(GPIO_PIN_1 | GPIO_PIN_2));
+    GPIO_WriteLow(GPIOC, (GPIO_Pin_TypeDef)(GPIO_PIN_3 | GPIO_PIN_4 | GPIO_PIN_6 | GPIO_PIN_7));
     break;
   case 9:  // 9
+    GPIO_WriteLow(GPIOA, (GPIO_Pin_TypeDef)(GPIO_PIN_1));
     GPIO_WriteLow(GPIOB, (GPIO_Pin_TypeDef)(GPIO_PIN_4 | GPIO_PIN_5));
-    GPIO_WriteLow(GPIOC, (GPIO_Pin_TypeDef)(GPIO_PIN_5 | GPIO_PIN_6 | GPIO_PIN_7));
-    GPIO_WriteHigh(GPIOD, (GPIO_Pin_TypeDef)(GPIO_PIN_1));
-    GPIO_WriteLow(GPIOD, (GPIO_Pin_TypeDef)(GPIO_PIN_2));
+    GPIO_WriteLow(GPIOC, (GPIO_Pin_TypeDef)(GPIO_PIN_3 | GPIO_PIN_4 | GPIO_PIN_6));
+    GPIO_WriteHigh(GPIOC, (GPIO_Pin_TypeDef)(GPIO_PIN_7));
     break;
   case 10: // A
+    GPIO_WriteLow(GPIOA, (GPIO_Pin_TypeDef)(GPIO_PIN_1));
     GPIO_WriteLow(GPIOB, (GPIO_Pin_TypeDef)(GPIO_PIN_4 | GPIO_PIN_5));
-    GPIO_WriteLow(GPIOC, (GPIO_Pin_TypeDef)(GPIO_PIN_5 | GPIO_PIN_6 | GPIO_PIN_7));
-    GPIO_WriteLow(GPIOD, (GPIO_Pin_TypeDef)(GPIO_PIN_1));
-    GPIO_WriteHigh(GPIOD, (GPIO_Pin_TypeDef)(GPIO_PIN_2));
+    GPIO_WriteLow(GPIOC, (GPIO_Pin_TypeDef)(GPIO_PIN_3 | GPIO_PIN_4 | GPIO_PIN_7));
+    GPIO_WriteHigh(GPIOC, (GPIO_Pin_TypeDef)(GPIO_PIN_6));
     break;
   case 11: // B
-    GPIO_WriteHigh(GPIOB, (GPIO_Pin_TypeDef)(GPIO_PIN_4));
-    GPIO_WriteLow(GPIOB, (GPIO_Pin_TypeDef)(GPIO_PIN_5));
-    GPIO_WriteHigh(GPIOC, (GPIO_Pin_TypeDef)(GPIO_PIN_5));
-    GPIO_WriteLow(GPIOC, (GPIO_Pin_TypeDef)(GPIO_PIN_6 | GPIO_PIN_7));
-    GPIO_WriteLow(GPIOD, (GPIO_Pin_TypeDef)(GPIO_PIN_1 | GPIO_PIN_2));
+    GPIO_WriteLow(GPIOA, (GPIO_Pin_TypeDef)(GPIO_PIN_1));
+    GPIO_WriteHigh(GPIOB, (GPIO_Pin_TypeDef)(GPIO_PIN_4 | GPIO_PIN_5));
+    GPIO_WriteLow(GPIOC, (GPIO_Pin_TypeDef)(GPIO_PIN_3 | GPIO_PIN_4 | GPIO_PIN_6 | GPIO_PIN_7));
     break;
   case 12: // C
-    GPIO_WriteLow(GPIOB, (GPIO_Pin_TypeDef)(GPIO_PIN_4 | GPIO_PIN_5));
-    GPIO_WriteHigh(GPIOC, (GPIO_Pin_TypeDef)(GPIO_PIN_5 | GPIO_PIN_6 | GPIO_PIN_7));
-    GPIO_WriteLow(GPIOD, (GPIO_Pin_TypeDef)(GPIO_PIN_1 | GPIO_PIN_2));
+    GPIO_WriteLow(GPIOA, (GPIO_Pin_TypeDef)(GPIO_PIN_1));
+    GPIO_WriteLow(GPIOB, (GPIO_Pin_TypeDef)(GPIO_PIN_5));
+    GPIO_WriteHigh(GPIOB, (GPIO_Pin_TypeDef)(GPIO_PIN_4));
+    GPIO_WriteLow(GPIOC, (GPIO_Pin_TypeDef)(GPIO_PIN_6 | GPIO_PIN_7));
+    GPIO_WriteHigh(GPIOC, (GPIO_Pin_TypeDef)(GPIO_PIN_3 | GPIO_PIN_4));
     break;
   case 13: // D
-    GPIO_WriteHigh(GPIOB, (GPIO_Pin_TypeDef)(GPIO_PIN_4 | GPIO_PIN_5));
-    GPIO_WriteLow(GPIOC, (GPIO_Pin_TypeDef)(GPIO_PIN_5 | GPIO_PIN_6 | GPIO_PIN_7));
-    GPIO_WriteLow(GPIOD, (GPIO_Pin_TypeDef)(GPIO_PIN_1 | GPIO_PIN_2));
+    GPIO_WriteHigh(GPIOA, (GPIO_Pin_TypeDef)(GPIO_PIN_1));
+    GPIO_WriteLow(GPIOB, (GPIO_Pin_TypeDef)(GPIO_PIN_4));
+    GPIO_WriteHigh(GPIOB, (GPIO_Pin_TypeDef)(GPIO_PIN_5));
+    GPIO_WriteLow(GPIOC, (GPIO_Pin_TypeDef)(GPIO_PIN_3 | GPIO_PIN_4 | GPIO_PIN_6 | GPIO_PIN_7));
     break;
   case 14: // E
-    GPIO_WriteLow(GPIOB, (GPIO_Pin_TypeDef)(GPIO_PIN_4 | GPIO_PIN_5));
-    GPIO_WriteHigh(GPIOC, (GPIO_Pin_TypeDef)(GPIO_PIN_5 | GPIO_PIN_7));
-    GPIO_WriteLow(GPIOC, (GPIO_Pin_TypeDef)(GPIO_PIN_6));
-    GPIO_WriteLow(GPIOD, (GPIO_Pin_TypeDef)(GPIO_PIN_1 | GPIO_PIN_2));
+    GPIO_WriteLow(GPIOA, (GPIO_Pin_TypeDef)(GPIO_PIN_1));
+    GPIO_WriteLow(GPIOB, (GPIO_Pin_TypeDef)(GPIO_PIN_5));
+    GPIO_WriteHigh(GPIOB, (GPIO_Pin_TypeDef)(GPIO_PIN_4));
+    GPIO_WriteLow(GPIOC, (GPIO_Pin_TypeDef)(GPIO_PIN_3 | GPIO_PIN_6 | GPIO_PIN_7));
+    GPIO_WriteHigh(GPIOC, (GPIO_Pin_TypeDef)(GPIO_PIN_4));
     break;
   case 15: // F
-    GPIO_WriteLow(GPIOB, (GPIO_Pin_TypeDef)(GPIO_PIN_4 | GPIO_PIN_5));
-    GPIO_WriteHigh(GPIOC, (GPIO_Pin_TypeDef)(GPIO_PIN_5 | GPIO_PIN_7));
-    GPIO_WriteLow(GPIOC, (GPIO_Pin_TypeDef)(GPIO_PIN_6));
-    GPIO_WriteLow(GPIOD, (GPIO_Pin_TypeDef)(GPIO_PIN_1));
-    GPIO_WriteHigh(GPIOD, (GPIO_Pin_TypeDef)(GPIO_PIN_2));
+    GPIO_WriteLow(GPIOA, (GPIO_Pin_TypeDef)(GPIO_PIN_1));
+    GPIO_WriteLow(GPIOB, (GPIO_Pin_TypeDef)(GPIO_PIN_5));
+    GPIO_WriteHigh(GPIOB, (GPIO_Pin_TypeDef)(GPIO_PIN_4));
+    GPIO_WriteLow(GPIOC, (GPIO_Pin_TypeDef)(GPIO_PIN_3 | GPIO_PIN_7));
+    GPIO_WriteHigh(GPIOC, (GPIO_Pin_TypeDef)(GPIO_PIN_4 | GPIO_PIN_6));
     break;
   default: // Blank
+    GPIO_WriteHigh(GPIOA, (GPIO_Pin_TypeDef)(GPIO_PIN_1));
     GPIO_WriteHigh(GPIOB, (GPIO_Pin_TypeDef)(GPIO_PIN_4 | GPIO_PIN_5));
-    GPIO_WriteHigh(GPIOC, (GPIO_Pin_TypeDef)(GPIO_PIN_5 | GPIO_PIN_6 | GPIO_PIN_7));
-    GPIO_WriteHigh(GPIOD, (GPIO_Pin_TypeDef)(GPIO_PIN_1 | GPIO_PIN_2));
+    GPIO_WriteHigh(GPIOC, (GPIO_Pin_TypeDef)(GPIO_PIN_3 | GPIO_PIN_4 | GPIO_PIN_6 | GPIO_PIN_7));
   }
   if (ch & 0x80) // DP
   {
-    GPIO_WriteLow(GPIOD, (GPIO_Pin_TypeDef)(GPIO_PIN_3));
+    GPIO_WriteLow(GPIOC, (GPIO_Pin_TypeDef)(GPIO_PIN_5));
   }
   else
   {
-    GPIO_WriteHigh(GPIOD, (GPIO_Pin_TypeDef)(GPIO_PIN_3));
+    GPIO_WriteHigh(GPIOC, (GPIO_Pin_TypeDef)(GPIO_PIN_5));
   }
 }
 
 
 static void _led_write_com(char digit)
 {
-  // LED_COM_4: PD4
-  // LED_COM_3: PA3
-  // LED_COM_2: PC4
-  // LED_COM_1: PC3
+  // LED_COM_4: PD1
+  // LED_COM_3: PD4
+  // LED_COM_2: PD6
+  // LED_COM_1: PA3
   switch (digit)
   {
   case 1:
-    GPIO_WriteHigh(GPIOC, (GPIO_Pin_TypeDef)GPIO_PIN_3);
-    GPIO_WriteLow(GPIOC, (GPIO_Pin_TypeDef)GPIO_PIN_4);
-    GPIO_WriteLow(GPIOA, (GPIO_Pin_TypeDef)GPIO_PIN_3);
+    GPIO_WriteHigh(GPIOA, (GPIO_Pin_TypeDef)GPIO_PIN_3);
+    GPIO_WriteLow(GPIOD, (GPIO_Pin_TypeDef)GPIO_PIN_6);
     GPIO_WriteLow(GPIOD, (GPIO_Pin_TypeDef)GPIO_PIN_4);
+    GPIO_WriteLow(GPIOD, (GPIO_Pin_TypeDef)GPIO_PIN_1);
     break;
   case 2:
-    GPIO_WriteLow(GPIOC, (GPIO_Pin_TypeDef)GPIO_PIN_3);
-    GPIO_WriteHigh(GPIOC, (GPIO_Pin_TypeDef)GPIO_PIN_4);
     GPIO_WriteLow(GPIOA, (GPIO_Pin_TypeDef)GPIO_PIN_3);
+    GPIO_WriteHigh(GPIOD, (GPIO_Pin_TypeDef)GPIO_PIN_6);
     GPIO_WriteLow(GPIOD, (GPIO_Pin_TypeDef)GPIO_PIN_4);
+    GPIO_WriteLow(GPIOD, (GPIO_Pin_TypeDef)GPIO_PIN_1);
     break;
   case 3:
-    GPIO_WriteLow(GPIOC, (GPIO_Pin_TypeDef)GPIO_PIN_3);
-    GPIO_WriteLow(GPIOC, (GPIO_Pin_TypeDef)GPIO_PIN_4);
-    GPIO_WriteHigh(GPIOA, (GPIO_Pin_TypeDef)GPIO_PIN_3);
-    GPIO_WriteLow(GPIOD, (GPIO_Pin_TypeDef)GPIO_PIN_4);
+    GPIO_WriteLow(GPIOA, (GPIO_Pin_TypeDef)GPIO_PIN_3);
+    GPIO_WriteLow(GPIOD, (GPIO_Pin_TypeDef)GPIO_PIN_6);
+    GPIO_WriteHigh(GPIOD, (GPIO_Pin_TypeDef)GPIO_PIN_4);
+    GPIO_WriteLow(GPIOD, (GPIO_Pin_TypeDef)GPIO_PIN_1);
     break;
   case 4:
-    GPIO_WriteLow(GPIOC, (GPIO_Pin_TypeDef)GPIO_PIN_3);
-    GPIO_WriteLow(GPIOC, (GPIO_Pin_TypeDef)GPIO_PIN_4);
     GPIO_WriteLow(GPIOA, (GPIO_Pin_TypeDef)GPIO_PIN_3);
-    GPIO_WriteHigh(GPIOD, (GPIO_Pin_TypeDef)GPIO_PIN_4);
+    GPIO_WriteLow(GPIOD, (GPIO_Pin_TypeDef)GPIO_PIN_6);
+    GPIO_WriteLow(GPIOD, (GPIO_Pin_TypeDef)GPIO_PIN_4);
+    GPIO_WriteHigh(GPIOD, (GPIO_Pin_TypeDef)GPIO_PIN_1);
     break;
   case 0:
-    GPIO_WriteLow(GPIOC, (GPIO_Pin_TypeDef)GPIO_PIN_3);
-    GPIO_WriteLow(GPIOC, (GPIO_Pin_TypeDef)GPIO_PIN_4);
     GPIO_WriteLow(GPIOA, (GPIO_Pin_TypeDef)GPIO_PIN_3);
+    GPIO_WriteLow(GPIOD, (GPIO_Pin_TypeDef)GPIO_PIN_6);
     GPIO_WriteLow(GPIOD, (GPIO_Pin_TypeDef)GPIO_PIN_4);
+    GPIO_WriteLow(GPIOD, (GPIO_Pin_TypeDef)GPIO_PIN_1);
     break;    
   }
 }
@@ -204,22 +205,22 @@ void led_init(void)
 {
   // GPIO Initialize
   // From left->right, Digit 1, 2, 3, 4 (_display_buf[0], _display_buf[1], _display_buf[2], _display_buf[3])
-  // LED_COM_1: PC3
-  // LED_COM_2: PC4
-  // LED_COM_3: PA3
-  // LED_COM_4: PD4
-  // LED_SEG_A: PB4
-  // LED_SEG_B: PC5
-  // LED_SEG_C: PC7
-  // LED_SEG_D: PD2
-  // LED_SEG_E: PD1
-  // LED_SEG_F: PB5
-  // LED_SEG_G: PC6
-  // LED_SEG_DP: PD3
-  GPIO_Init(GPIOA, (GPIO_Pin_TypeDef)GPIO_PIN_3, GPIO_MODE_OUT_PP_HIGH_FAST);
+  // LED_COM_1: PA3
+  // LED_COM_2: PD6
+  // LED_COM_3: PD4
+  // LED_COM_4: PD1
+  // LED_SEG_A: PB5
+  // LED_SEG_B: PB4
+  // LED_SEG_C: PC4
+  // LED_SEG_D: PC6
+  // LED_SEG_E: PC7
+  // LED_SEG_F: PA1
+  // LED_SEG_G: PC3
+  // LED_SEG_DP: PC5
+  GPIO_Init(GPIOA, (GPIO_Pin_TypeDef)(GPIO_PIN_1 | GPIO_PIN_3), GPIO_MODE_OUT_PP_HIGH_FAST);
   GPIO_Init(GPIOB, (GPIO_Pin_TypeDef)(GPIO_PIN_4 | GPIO_PIN_5), GPIO_MODE_OUT_PP_HIGH_FAST);
-  GPIO_Init(GPIOC, (GPIO_Pin_TypeDef)(GPIO_PIN_3 | GPIO_PIN_4 | GPIO_PIN_5 | GPIO_PIN_6 | GPIO_PIN_7), GPIO_MODE_OUT_PP_HIGH_FAST);
-  GPIO_Init(GPIOD, (GPIO_Pin_TypeDef)(GPIO_PIN_1 | GPIO_PIN_2 | GPIO_PIN_3 | GPIO_PIN_4), GPIO_MODE_OUT_PP_HIGH_FAST);
+  GPIO_Init(GPIOC, (GPIO_Pin_TypeDef)(GPIO_PIN_3 | GPIO_PIN_4 | GPIO_PIN_5 | GPIO_PIN_6 | GPIO_PIN_7 | GPIO_PIN_7), GPIO_MODE_OUT_PP_HIGH_FAST);
+  GPIO_Init(GPIOD, (GPIO_Pin_TypeDef)(GPIO_PIN_1 | GPIO_PIN_4 | GPIO_PIN_6), GPIO_MODE_OUT_PP_HIGH_FAST);
   // Clear buffer
   _display_buf[0] = 0x0b;
   _display_buf[1] = 0x0e;

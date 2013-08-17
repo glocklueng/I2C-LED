@@ -2,8 +2,8 @@
 #include "soft_i2c_slave.h"
 
 #define I2C_PORT GPIOD
-#define I2C_SCL_PIN GPIO_PIN_5
-#define I2C_SDA_PIN GPIO_PIN_6
+#define I2C_SCL_PIN GPIO_PIN_2
+#define I2C_SDA_PIN GPIO_PIN_3
 #define I2C_EXTI_PORT EXTI_PORT_GPIOD
 #define I2C_EXTI_SENSITIVITY_MASK EXTI_CR1_PDIS
 

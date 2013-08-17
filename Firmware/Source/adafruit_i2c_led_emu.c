@@ -158,7 +158,7 @@ uint8_t emu_on_i2c_data_received(uint8_t data)
     }
     else
     {
-      // Not valild command
+      // Not valid command
       result = 0;
     }
     break;
