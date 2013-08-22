@@ -6773,7 +6773,6 @@ www.torex.co.jp/english/product/pro02/pdf/0201_xc62fp.pdf</description>
 <part name="R8" library="resistor" deviceset="R-EU_" device="R0603" value="220R"/>
 <part name="P+4" library="supply1" deviceset="V+" device=""/>
 <part name="R6" library="resistor" deviceset="R-EU_" device="R0603" value="91K"/>
-<part name="JP3" library="SparkFun" deviceset="M03" device="PTH"/>
 </parts>
 <sheets>
 <sheet>
@@ -6793,11 +6792,11 @@ www.torex.co.jp/english/product/pro02/pdf/0201_xc62fp.pdf</description>
 <attribute name="VALUE" x="31.496" y="75.819" size="1.778" layer="96" rot="R180"/>
 </instance>
 <instance part="VDD2" gate="G$1" x="73.66" y="78.74" rot="R270"/>
-<instance part="P-1" gate="1" x="2.54" y="71.12" smashed="yes">
-<attribute name="VALUE" x="2.54" y="68.58" size="1.778" layer="96" rot="R270"/>
+<instance part="P-1" gate="1" x="2.54" y="78.74" smashed="yes">
+<attribute name="VALUE" x="2.54" y="76.2" size="1.778" layer="96" rot="R270"/>
 </instance>
-<instance part="P+1" gate="1" x="0" y="71.12" smashed="yes" rot="R180">
-<attribute name="VALUE" x="0" y="68.58" size="1.778" layer="96" rot="R270"/>
+<instance part="P+1" gate="1" x="0" y="78.74" smashed="yes" rot="R180">
+<attribute name="VALUE" x="0" y="76.2" size="1.778" layer="96" rot="R270"/>
 </instance>
 <instance part="P+2" gate="1" x="0" y="30.48" smashed="yes" rot="R270">
 <attribute name="VALUE" x="2.54" y="30.48" size="1.778" layer="96"/>
@@ -6854,7 +6853,6 @@ www.torex.co.jp/english/product/pro02/pdf/0201_xc62fp.pdf</description>
 <attribute name="VALUE" x="114.3" y="96.52" size="1.778" layer="96" rot="R90"/>
 </instance>
 <instance part="R6" gate="G$1" x="114.3" y="83.82" rot="R90"/>
-<instance part="JP3" gate="G$1" x="-15.24" y="93.98" rot="R270"/>
 </instances>
 <busses>
 </busses>
@@ -6873,9 +6871,9 @@ www.torex.co.jp/english/product/pro02/pdf/0201_xc62fp.pdf</description>
 <net name="V-" class="0">
 <segment>
 <pinref part="JP1" gate="G$1" pin="3"/>
-<wire x1="2.54" y1="86.36" x2="2.54" y2="73.66" width="0.1524" layer="91"/>
+<wire x1="2.54" y1="86.36" x2="2.54" y2="81.28" width="0.1524" layer="91"/>
 <pinref part="P-1" gate="1" pin="V-"/>
-<label x="2.54" y="78.74" size="1.778" layer="95" rot="R90"/>
+<label x="2.54" y="83.82" size="1.778" layer="95" rot="R90"/>
 </segment>
 <segment>
 <pinref part="P-2" gate="1" pin="V-"/>
@@ -6911,20 +6909,20 @@ www.torex.co.jp/english/product/pro02/pdf/0201_xc62fp.pdf</description>
 <wire x1="-2.54" y1="53.34" x2="-2.54" y2="33.02" width="0.1524" layer="91"/>
 <wire x1="-2.54" y1="33.02" x2="-10.16" y2="33.02" width="0.1524" layer="91"/>
 <label x="-10.16" y="33.02" size="1.778" layer="95"/>
+<label x="-2.54" y="83.82" size="1.778" layer="95" rot="R90"/>
 <pinref part="IC1" gate="G$1" pin="PD2/AIN3/[TIM2_CH3]"/>
 <wire x1="93.98" y1="17.78" x2="96.52" y2="17.78" width="0.1524" layer="91"/>
 <wire x1="96.52" y1="17.78" x2="96.52" y2="53.34" width="0.1524" layer="91"/>
 <wire x1="96.52" y1="53.34" x2="-2.54" y2="53.34" width="0.1524" layer="91"/>
 <junction x="-2.54" y="53.34"/>
-<label x="-2.54" y="78.74" size="1.778" layer="95" rot="R90"/>
 </segment>
 </net>
 <net name="V+" class="0">
 <segment>
 <pinref part="P+1" gate="1" pin="V+"/>
 <pinref part="JP1" gate="G$1" pin="2"/>
-<wire x1="0" y1="73.66" x2="0" y2="86.36" width="0.1524" layer="91"/>
-<label x="0" y="78.74" size="1.778" layer="95" rot="R90"/>
+<wire x1="0" y1="81.28" x2="0" y2="86.36" width="0.1524" layer="91"/>
+<label x="0" y="83.82" size="1.778" layer="95" rot="R90"/>
 </segment>
 <segment>
 <pinref part="P+3" gate="1" pin="V+"/>
@@ -6963,19 +6961,14 @@ www.torex.co.jp/english/product/pro02/pdf/0201_xc62fp.pdf</description>
 <pinref part="IC1" gate="G$1" pin="!RST"/>
 <wire x1="7.62" y1="45.72" x2="25.4" y2="45.72" width="0.1524" layer="91"/>
 <label x="-10.16" y="25.4" size="1.778" layer="95"/>
-<pinref part="JP3" gate="G$1" pin="2"/>
-<wire x1="7.62" y1="45.72" x2="-15.24" y2="45.72" width="0.1524" layer="91"/>
-<wire x1="-15.24" y1="45.72" x2="-15.24" y2="86.36" width="0.1524" layer="91"/>
-<junction x="7.62" y="45.72"/>
-<label x="-15.24" y="78.74" size="1.778" layer="95" rot="R90"/>
 </segment>
 </net>
 <net name="SWIM" class="0">
 <segment>
 <pinref part="JP2" gate="G$1" pin="5"/>
-<wire x1="-10.16" y1="22.86" x2="10.16" y2="22.86" width="0.1524" layer="91"/>
-<wire x1="10.16" y1="22.86" x2="10.16" y2="-2.54" width="0.1524" layer="91"/>
-<wire x1="10.16" y1="-2.54" x2="104.14" y2="-2.54" width="0.1524" layer="91"/>
+<wire x1="-10.16" y1="22.86" x2="7.62" y2="22.86" width="0.1524" layer="91"/>
+<wire x1="7.62" y1="22.86" x2="7.62" y2="-2.54" width="0.1524" layer="91"/>
+<wire x1="7.62" y1="-2.54" x2="104.14" y2="-2.54" width="0.1524" layer="91"/>
 <wire x1="104.14" y1="-2.54" x2="104.14" y2="20.32" width="0.1524" layer="91"/>
 <pinref part="IC1" gate="G$1" pin="PD1/SWIM"/>
 <wire x1="104.14" y1="20.32" x2="93.98" y2="20.32" width="0.1524" layer="91"/>
@@ -6985,12 +6978,6 @@ www.torex.co.jp/english/product/pro02/pdf/0201_xc62fp.pdf</description>
 <wire x1="175.26" y1="25.4" x2="172.72" y2="25.4" width="0.1524" layer="91"/>
 <junction x="104.14" y="-2.54"/>
 <label x="-10.16" y="22.86" size="1.778" layer="95"/>
-<wire x1="10.16" y1="22.86" x2="10.16" y2="48.26" width="0.1524" layer="91"/>
-<pinref part="JP3" gate="G$1" pin="3"/>
-<wire x1="10.16" y1="48.26" x2="-12.7" y2="48.26" width="0.1524" layer="91"/>
-<wire x1="-12.7" y1="48.26" x2="-12.7" y2="86.36" width="0.1524" layer="91"/>
-<junction x="10.16" y="22.86"/>
-<label x="-12.7" y="78.74" size="1.778" layer="95" rot="R90"/>
 </segment>
 </net>
 <net name="N$4" class="0">
@@ -7167,11 +7154,8 @@ www.torex.co.jp/english/product/pro02/pdf/0201_xc62fp.pdf</description>
 <segment>
 <pinref part="IC1" gate="G$1" pin="PD3/AIN4/TIM2_CH2/ADC_ETR"/>
 <wire x1="93.98" y1="15.24" x2="101.6" y2="15.24" width="0.1524" layer="91"/>
-<wire x1="101.6" y1="15.24" x2="101.6" y2="58.42" width="0.1524" layer="91"/>
-<pinref part="JP3" gate="G$1" pin="1"/>
-<wire x1="101.6" y1="58.42" x2="-17.78" y2="58.42" width="0.1524" layer="91"/>
-<wire x1="-17.78" y1="58.42" x2="-17.78" y2="86.36" width="0.1524" layer="91"/>
-<label x="-17.78" y="78.74" size="1.778" layer="95" rot="R90"/>
+<wire x1="101.6" y1="15.24" x2="101.6" y2="73.66" width="0.1524" layer="91"/>
+<label x="101.6" y="68.58" size="1.778" layer="95" rot="R90"/>
 </segment>
 </net>
 </nets>
