@@ -231,14 +231,14 @@ void led_init(void)
   _blink = LED_BLINK_OFF;
   // Disable update
   led_off();
-  // ***
+  /*
   // Test
   led_set_digit( 1, 0x0 );
   led_set_digit( 2, 0x1 );
   led_set_digit( 3, 0x2 );
   led_set_digit( 4, 0x3 );
   led_on();
-  
+  */
 }
 
 
