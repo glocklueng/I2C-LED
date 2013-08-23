@@ -1,9 +1,6 @@
 #include "stm8s.h"
 #include "soft_i2c_slave.h"
 
-// ***
-#include "led.h"
-
 /*
   SCL = PD2 pin 19
   SDA = PD3 pin 20
@@ -219,7 +216,6 @@ static void _SDA_ISR(uint8_t SDA, uint8_t SCL)
 
 static void _SCL_ISR(uint8_t SDA, uint8_t SCL)
 {
-      
   switch (*_scl_state)
   {
   case SCL_W1LH: // Bit 1 (first SCL rising edge
@@ -280,13 +276,6 @@ static void _SCL_ISR(uint8_t SDA, uint8_t SCL)
       }
       else
       {
-        // ***
-        /*
-  led_set_digit( 1, _i2c_data >> 4 );
-  led_set_digit( 2, ( _i2c_data & 0x0f ) | 0x80 );
-  led_set_digit( 3, _my_address >> 4 );
-  led_set_digit( 4, _my_address & 0x0f );
-        */
         // Not my address
         // Disable timeout
         //TIM2_Cmd(DISABLE);
@@ -332,12 +321,6 @@ static void _SCL_ISR(uint8_t SDA, uint8_t SCL)
     break;
   case SCL_W8HL:
     // Was INTR_SDA_DR_SCL_EF
-    /*
-  led_set_digit( 1, _br_clk8hl >> 4 );
-  led_set_digit( 2, ( _br_clk8hl & 0x0f ) | 0x80 );
-  led_set_digit( 3, 0xff );
-  led_set_digit( 4, 0xff );
-    */
     switch (_br_clk8hl)
     {
     case W_ACK:
