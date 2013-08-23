@@ -231,6 +231,14 @@ void led_init(void)
   _blink = LED_BLINK_OFF;
   // Disable update
   led_off();
+  /*
+  // Test
+  led_set_digit( 1, 0x0 );
+  led_set_digit( 2, 0x1 );
+  led_set_digit( 3, 0x2 );
+  led_set_digit( 4, 0x3 );
+  led_on();
+  */
 }
 
 
@@ -315,7 +323,7 @@ void LED_TIM1_UPDATE_ISR(void)
   static uint16_t blink_count = 0;
   
   // This function will be called every 1024us, for the fastest blink rate of 2Hz,
-  // LED should toogle every 244 cycles
+  // LED should toggle every 244 cycles
   ++blink_count;
   switch (_blink)
   {

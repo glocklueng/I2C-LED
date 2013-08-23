@@ -300,21 +300,27 @@ void emu_run(void)
     {
     case CMD_DISPLAY_ADDRESS_POINTER:
       _handle_display_address_pointer(value);
+      //led_off(); //***
       break;
     case DATA_DISPLAY_DATA:
       _handle_display_data(value);
+      //led_off(); //***
       break;
     case CMD_SYSTEM_SETUP:
       _handle_system_setup(value);
+      //led_off(); //***
       break;
     case CMD_DISPLAY_SETUP:
       _handle_display_setup(value);
+      //led_off(); //***
       break;
     case CMD_DIMMING_SET:
       _handle_dimming_set(value);
+      //led_off(); //***
       break;
     default:
       // Unknown command, skip
+      //led_off(); //***
       break;
     }
   }

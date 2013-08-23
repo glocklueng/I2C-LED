@@ -1,9 +1,14 @@
 #include "stm8s.h"
 #include "soft_i2c_slave.h"
 
+/*
+  SCL = PD2 pin 19
+  SDA = PD3 pin 20
+*/
 #define I2C_PORT GPIOD
 #define I2C_SCL_PIN GPIO_PIN_2
 #define I2C_SDA_PIN GPIO_PIN_3
+
 #define I2C_EXTI_PORT EXTI_PORT_GPIOD
 #define I2C_EXTI_SENSITIVITY_MASK EXTI_CR1_PDIS
 
@@ -93,7 +98,7 @@ static void _init_port(void)
   I2C_PORT->CR2 &= (uint8_t)(~(I2C_SCL_PIN | I2C_SDA_PIN));
   // Init state
   // SCL Input, Interrupt on rising edge, Disabled
-  // SDA Input, Intrerrupt on falling edge, Enabled
+  // SDA Input, Interrupt on falling edge, Enabled
   _interrupt_mode = INTR_SDA_EF_SCL_DR;
   //GPIO_Init(I2C_PORT, I2C_SDA_PIN, GPIO_MODE_IN_FL_IT);
   I2C_PORT->DDR &= (uint8_t)(~(I2C_SDA_PIN));  // Input
@@ -144,7 +149,7 @@ void i2c_listen
   // TIM2_Cmd(ENABLE);
   TIM2->CR1 |= (uint8_t)(TIM2_CR1_CEN);
   // Once timer enables, an update event will be immediately generated.
-	// I2C listener will be initialized inside update event handler.
+  // I2C listener will be initialized inside update event handler.
 }
 
 
@@ -213,7 +218,7 @@ static void _SCL_ISR(uint8_t SDA, uint8_t SCL)
 {
   switch (*_scl_state)
   {
-  case SCL_W1LH: // Bit 1 (first SCL rising edge)
+  case SCL_W1LH: // Bit 1 (first SCL rising edge
     _i2c_data = SDA ? (_i2c_data << 1 | 0x01) : (_i2c_data << 1); // Shift bit in
     ++_scl_state; // Next state
     // Was INTR_SDA_DR_SCL_ER
@@ -272,7 +277,7 @@ static void _SCL_ISR(uint8_t SDA, uint8_t SCL)
       else
       {
         // Not my address
-        // Disable timtout
+        // Disable timeout
         //TIM2_Cmd(DISABLE);
         TIM2->CR1 &= (uint8_t)(~TIM2_CR1_CEN);
         //TIM2_ITConfig(TIM2_IT_UPDATE, DISABLE);
@@ -327,7 +332,7 @@ static void _SCL_ISR(uint8_t SDA, uint8_t SCL)
       I2C_PORT->CR2 |= (uint8_t)I2C_SDA_PIN;      // Fast
       ++_scl_state; // Next state
       I2C_PORT->CR2 |= (uint8_t)I2C_SCL_PIN;  // Enable SCL Interrupt
-      // Now INTR_SDA_DR_SCL_EF, no change but SDA is output if data acknowldged
+      // Now ., no change but SDA is output if data acknowldged
       break;
     case W_CALLBACK:
       // Clock stretching, pull SCL low until we finish data_received callback
