@@ -3,7 +3,7 @@
 #include "adafruit_i2c_led_emu.h"
 #include "led.h"
 
-#define i2c_slave_address 0x72
+#define i2c_slave_address 0x70
 
 /**
   * @brief  Configure system clock 
