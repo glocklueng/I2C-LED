@@ -1,70 +1,68 @@
-LED voltmeters are a cheap source of 7 segment displays and can easily be repurposed.<br />
+LED voltmeters are a cheap source of 7 segment displays and can easily be repurposed. Using the I2C protocol, a&nbsp;master microcontroller such as an <a href="http://amzn.to/12aYA6Z">Arduino Uno</a> can govern multiple displays with just 2 I/O pins.<br />
 <br />
-PHOTO OF MULTIPLEXED DISPLAYS<br />
-<br />
+<div class="separator" style="clear: both; text-align: center;">
+<a href="http://3.bp.blogspot.com/-pdQ5PQK_KVk/UhkKa-om_gI/AAAAAAAABbo/V0I8TvScqoA/s1600/test.jpg" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" height="300" src="http://3.bp.blogspot.com/-pdQ5PQK_KVk/UhkKa-om_gI/AAAAAAAABbo/V0I8TvScqoA/s400/test.jpg" width="400" /></a></div>
 <!--more--><br />
+<br />
+<h3>
+Hello, Pleased to Meter You</h3>
+<br />
+<div>
+The&nbsp;<a href="http://www.adafruit.com/products/878">Adafruit 4-digit 7-segment LED backpack</a>&nbsp;is a handy little board, and Ladyada's <a href="http://learn.adafruit.com/adafruit-led-backpack/">tutorial</a> and <a href="https://github.com/adafruit/Adafruit-LED-Backpack-Library">Arduino library</a> make it a snap to use. It's as easy to connect 8 displays as a single one: just set them to have different slave addresses and hook them all up to your Arduino's I2C pins. The trouble is that 8 displays will set you back around $80 (or a little more if you like the colour blue).</div>
+<br />
+<div>
+Looking around for an alternative, I discovered an <a href="http://www.buyincoins.com/">internet retailer</a> selling cheap LED voltmeters in both <a href="http://www.buyincoins.com/item/26010.html">red</a> and <a href="http://www.buyincoins.com/item/26011.html">blue</a>. The listing titles mentioned "Stm8s003", the name of a series of small microcontrollers. For around $30 I bought myself 8 of the voltmeters and the <a href="http://www.st.com/web/en/catalog/tools/PF247087">STM8S discovery</a> development board to reprogram them with. Similar voltmeters are available elsewhere, including <a href="http://www.ebay.com/sch/led+4+digit+voltmeter">eBay</a>.</div>
+<br />
+<div>
+Then I had the most amazing stroke of luck. While I was waiting for the voltmeters to ship from the Far East, I came across an <a href="http://www.ba0sh1.com/hacking-a-cheap-led-voltmeter/">excellent blog post</a>&nbsp;documenting a very similar project. The author had done an amazing job of writing firmware that would emulate the Adafruit board so that the hacked voltmeter would be compatible with the existing Arduino libraries. The hard work had all been done for me. All that remained to adapt the firmware to the slightly different voltmeter that I would be using.</div>
+<br />
+<div class="separator" style="clear: both; text-align: center;">
+<a href="http://3.bp.blogspot.com/-iFPcGzMI3so/Uhg9OJ19luI/AAAAAAAABaM/8upOZP0jfds/s1600/Original+Hardware+(front,+alternate).jpg" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" height="218" src="http://3.bp.blogspot.com/-iFPcGzMI3so/Uhg9OJ19luI/AAAAAAAABaM/8upOZP0jfds/s400/Original+Hardware+(front,+alternate).jpg" width="400" /></a></div>
+<br />
 <br />
 <h3>
 Hardware</h3>
 <br />
 <div>
-The hardware for this project can be bought from http://www.buyincoins.com/item/26010.html ("New 4 Digit 4.5-30V Stm8s003 Master Control Two Lines Red LED Digital Voltmeter") or http://www.buyincoins.com/item/26011.html ("4 Digit 4.5-30V Stm8s003 Master Control Two Lines Blue LED Digital in any way). Please note that I'm not associated with the seller in any way.</div>
-<br />
-<br />
-The original hardware was designed as a 4-digit voltmeter using STM8S003F3P6 MCU. The front looks like this:<br />
-<div class="separator" style="clear: both; text-align: center;">
-</div>
-<div class="separator" style="clear: both; text-align: center;">
-</div>
+The voltmeters accepted between 3.5V to 30V on the red (V+) and black (V-) wires.&nbsp;On the reverse of I identified a <a href="http://www.holtek.com/pdf/consumer/71xx_1v170.pdf">voltage regulator</a> that provided 3.3V to the&nbsp;<a href="http://octopart.com/datasheet/stm8s003f3p6-stmicroelectronics-20733190-10633907">STM8S003F3P6</a>&nbsp;MCU which drives the LEDs.</div>
 <br />
 <div class="separator" style="clear: both; text-align: center;">
-</div>
-<div class="separator" style="clear: both; text-align: center;">
-<a href="http://3.bp.blogspot.com/-iFPcGzMI3so/Uhg9OJ19luI/AAAAAAAABaM/8upOZP0jfds/s1600/Original+Hardware+(front,+alternate).jpg" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" height="175" src="http://3.bp.blogspot.com/-iFPcGzMI3so/Uhg9OJ19luI/AAAAAAAABaM/8upOZP0jfds/s320/Original+Hardware+(front,+alternate).jpg" width="320" /></a></div>
+<a href="http://4.bp.blogspot.com/-kmCX5zvN1Rk/UhgsudDqmcI/AAAAAAAABZI/TaaDUcG2NMY/s1600/Original+Hardware+(back,+type+1).jpg" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" height="216" src="http://4.bp.blogspot.com/-kmCX5zvN1Rk/UhgsudDqmcI/AAAAAAAABZI/TaaDUcG2NMY/s400/Original+Hardware+(back,+type+1).jpg" width="400" /></a></div>
 <br />
 <br />
 <div>
-The back looks like this:</div>
+One or two of the voltmeters looked slightly different with a trimmer resistor for R3 and and extra capacitor C1:</div>
 <br />
 <div class="separator" style="clear: both; text-align: center;">
-</div>
-<div class="separator" style="clear: both; text-align: center;">
-<a href="http://4.bp.blogspot.com/-kmCX5zvN1Rk/UhgsudDqmcI/AAAAAAAABZI/TaaDUcG2NMY/s1600/Original+Hardware+(back,+type+1).jpg" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" height="173" src="http://4.bp.blogspot.com/-kmCX5zvN1Rk/UhgsudDqmcI/AAAAAAAABZI/TaaDUcG2NMY/s320/Original+Hardware+(back,+type+1).jpg" width="320" /></a></div>
+<a href="http://1.bp.blogspot.com/-Hxq-tDEs_r8/UhgsuHtytdI/AAAAAAAABZA/c8Mhtk5VDnE/s1600/Original+Hardware+(back,+type+2).jpg" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" height="235" src="http://1.bp.blogspot.com/-Hxq-tDEs_r8/UhgsuHtytdI/AAAAAAAABZA/c8Mhtk5VDnE/s400/Original+Hardware+(back,+type+2).jpg" width="400" /></a></div>
 <br />
 <br />
 <div>
-Or possibly like this:</div>
-<br />
-<div class="separator" style="clear: both; text-align: center;">
-<a href="http://1.bp.blogspot.com/-Hxq-tDEs_r8/UhgsuHtytdI/AAAAAAAABZA/c8Mhtk5VDnE/s1600/Original+Hardware+(back,+type+2).jpg" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" height="188" src="http://1.bp.blogspot.com/-Hxq-tDEs_r8/UhgsuHtytdI/AAAAAAAABZA/c8Mhtk5VDnE/s320/Original+Hardware+(back,+type+2).jpg" width="320" /></a></div>
-<br />
-<br />
-<div>
-The board is powered by providing between 3.5V and 30V between the red (positive) and black (negative) wires. A voltage regulator provides 3.3V to the STM8S chip which drives the LEDs. I sacrificed a voltmeter to try to recreate the schematic of the original hardware as best I could:</div>
+With soldering iron and tweezers in hand, I sacrificed one of the voltmeters to recreate the schematic as best I could.&nbsp;The hardware I2C pins on the MCU were both in use, but it was apparent that pins 19 and 20 on the MCU could be reassigned to bit bang the I2C protocol.</div>
 <br />
 <div class="separator" style="clear: both; text-align: center;">
 <a href="http://4.bp.blogspot.com/-Y5LU7JeE8xs/UhgqRRBU93I/AAAAAAAABYw/LpIhZgF6sS4/s1600/voltmeter.png" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" height="213" src="http://4.bp.blogspot.com/-Y5LU7JeE8xs/UhgqRRBU93I/AAAAAAAABYw/LpIhZgF6sS4/s400/voltmeter.png" width="400" /></a></div>
 <br />
+<br />
 <div>
-<br /></div>
-Step by step photo tutorial:<br />
+Next up, a step-by-step surgery guide to repurposing the voltmeters.</div>
 <br />
 <b>Step 1. </b>Orient the voltmeter face down with the chip on the left hand side. Desolder resistors R3 and RX.&nbsp;Solder a wire in hole 1 (marked with a square), trim and strip the loose end, and solder to the left hand pad under resistor RX.&nbsp;Solder two more wires into holes 4 and 5 of header HV. These connect to pins 4 (NRST) and 18 (SWIM) and are used in programming the&nbsp;STM8S&nbsp;chip.<br />
 <br />
 <div class="separator" style="clear: both; text-align: center;">
-<a href="http://2.bp.blogspot.com/-T4PuVSdne08/Uhg-WNtBEmI/AAAAAAAABa8/XPo041Dwk_s/s1600/hack2.jpg" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" height="185" src="http://2.bp.blogspot.com/-T4PuVSdne08/Uhg-WNtBEmI/AAAAAAAABa8/XPo041Dwk_s/s320/hack2.jpg" width="320" /></a></div>
+<a href="http://2.bp.blogspot.com/-T4PuVSdne08/Uhg-WNtBEmI/AAAAAAAABa8/XPo041Dwk_s/s1600/hack2.jpg" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" height="231" src="http://2.bp.blogspot.com/-T4PuVSdne08/Uhg-WNtBEmI/AAAAAAAABa8/XPo041Dwk_s/s400/hack2.jpg" width="400" /></a></div>
 <br />
 <div class="separator" style="clear: both; text-align: center;">
 </div>
 <div class="separator" style="clear: both; text-align: center;">
 </div>
 <br />
-<b>Step 2. </b>Solder a wire to the pad marked "IN" next to the red wire that carries the positive voltage. Apply flux to the very bottom pin on the left hand side the chip and very carefully solder to a length of solid core hookup wire. These two wires connect to pins 19 and 20 and carry the I2C SCL and SDA signals, respectively.<br />
+<b>Step 2. </b>Solder a wire to the pad marked "IN" next to the red wire that carries the positive voltage. The next part is slightly <a href="http://smokedprojects.blogspot.com/search/label/Tricky">tricky</a>. Apply flux to the very bottom pin on the left hand side the chip and very carefully solder to a length of solid core hookup wire. These two wires connect to pins 19 and 20 and carry the I2C SCL and SDA signals, respectively.<br />
 <div class="separator" style="clear: both; text-align: center;">
 </div>
 <br />
 <div class="separator" style="clear: both; text-align: center;">
-<a href="http://3.bp.blogspot.com/-5SY2c6PxHKI/Uhg-cwK9-hI/AAAAAAAABbE/8G5cIjKTBbU/s1600/hack3.jpg" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" height="178" src="http://3.bp.blogspot.com/-5SY2c6PxHKI/Uhg-cwK9-hI/AAAAAAAABbE/8G5cIjKTBbU/s320/hack3.jpg" width="320" /></a></div>
+<a href="http://3.bp.blogspot.com/-5SY2c6PxHKI/Uhg-cwK9-hI/AAAAAAAABbE/8G5cIjKTBbU/s1600/hack3.jpg" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" height="222" src="http://3.bp.blogspot.com/-5SY2c6PxHKI/Uhg-cwK9-hI/AAAAAAAABbE/8G5cIjKTBbU/s400/hack3.jpg" width="400" /></a></div>
 <div class="separator" style="clear: both; text-align: center;">
 <br /></div>
 <div class="separator" style="clear: both; text-align: center;">
@@ -74,56 +72,51 @@ Step by step photo tutorial:<br />
 <div class="separator" style="clear: both; text-align: center;">
 </div>
 <div class="separator" style="clear: both; text-align: center;">
-<a href="http://4.bp.blogspot.com/-VfC7Mc2bsy4/Uhg-i6piPoI/AAAAAAAABbM/OkIJsNZY0SI/s1600/hack4.jpg" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" height="203" src="http://4.bp.blogspot.com/-VfC7Mc2bsy4/Uhg-i6piPoI/AAAAAAAABbM/OkIJsNZY0SI/s320/hack4.jpg" width="320" /></a></div>
-<br />
+<a href="http://4.bp.blogspot.com/-VfC7Mc2bsy4/Uhg-i6piPoI/AAAAAAAABbM/OkIJsNZY0SI/s1600/hack4.jpg" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" height="253" src="http://4.bp.blogspot.com/-VfC7Mc2bsy4/Uhg-i6piPoI/AAAAAAAABbM/OkIJsNZY0SI/s400/hack4.jpg" width="400" /></a></div>
 <br />
 <br />
 <div>
-The schematic of the hacked hardware looks like this:</div>
+The hacked hardware should now have a layout something like this:</div>
 <br />
 <br />
 <div class="separator" style="clear: both; text-align: center;">
 <a href="http://2.bp.blogspot.com/-kQAv8L7y7b0/UhgqRGGiRNI/AAAAAAAABYs/1SHji2cuu-Q/s1600/voltmeter-hack.png" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" height="213" src="http://2.bp.blogspot.com/-kQAv8L7y7b0/UhgqRGGiRNI/AAAAAAAABYs/1SHji2cuu-Q/s400/voltmeter-hack.png" width="400" /></a></div>
 <div>
-<br /></div>
 <br />
 <br />
 <h3>
 Firmware</h3>
 <br />
-I adapted a similar project documented on this blog page: http://www.ba0sh1.com/hacking-a-cheap-led-voltmeter/ and in this github repository: https://github.com/baoshi/I2C-LED to modify the voltmeter into an I2C display device. The majority of the source code goes into bit banging the I2C slave protocol, as the original I2C pins are occupied by the LED. With full compiler optimization I2C clock up to 50kHz is supported.<br />
+The firmware is archived in a <a href="https://github.com/t0mpr1c3/I2C-LED">github repository</a>.&nbsp;<a href="http://www.ba0sh1.com/hacking-a-cheap-led-voltmeter/">As explained by the firmware's author,</a>&nbsp;the majority of the source code is devoted to recreating the I2C slave protocol in software. The code is optimized to allow transfer speeds of up to 50kHz. An additional layer has been implemented to&nbsp;emulate the <a href="http://www.adafruit.com/products/878">Adafruit Backpack</a>.&nbsp;Because of the different pin assignments I made a few changes here and there.<br />
+<arduino><br /></arduino>
+<arduino>The source code should be compiled using&nbsp;<a href="http://www.iar.com/Products/IAR-Embedded-Workbench/STMicroelectronics-STM8/">IAR Embedded Workbench for STMicroelectronics STM8</a>. The “KickStarter” edition is usable free with registration. T</arduino>he STM8S/A Standard Peripherals Library (STM8S_StdPeriph_Driver V2.1.0) is required and can be downloaded as stsw-stm8069.zip from the <a href="http://www.st.com/">http://www.st.com</a> STM8 firmware page.<br />
+.<br />
+For one of the voltmeters, I had difficulty programming the MCU because it had Read-out Protection activated. I couldn't figure out how to disable&nbsp;this option&nbsp;using IAR Embedded Workbench, but it was straightforward to do from the "option bytes" menu in the STVD visual development IDE, which I also downloaded from&nbsp;<a href="http://www.st.com/">http://www.st.com</a>.</div>
+<div>
+<br /></div>
+<div>
+The <a href="http://www.st.com/web/en/catalog/tools/PF247087">STM8S discovery</a>&nbsp;development board (see picture below) can be used&nbsp;to program the chip using the SWIM protocol. First remove the solder bridges connecting the emulator to the evaluation board, then connect the pins on the SWIM header to the correct terminals on the hacked voltmeter: VDD to V+, VSS to V-, NRST and SWIM to holes 4 and 5 of header HV, respectively.<br />
 <br />
-A emulation layer for the "Adafruit 4-Digit 7-Segment Display Backpack" http://www.adafruit.com/products/878 is also implemented. Original Adafruit Arduino demo codes are used for testing. Note that in order to run the Arduino code, the I2C clock needs to be reduced to 50 kHz.<br />
-<h3>
-<br />Reprogramming</h3>
+<div class="separator" style="clear: both; text-align: center;">
+<a href="http://3.bp.blogspot.com/-j2xuRZSis5Y/UhkJzcW41hI/AAAAAAAABbg/wRZuGnwHbZw/s1600/STM8S_discovery.jpg" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" height="300" src="http://3.bp.blogspot.com/-j2xuRZSis5Y/UhkJzcW41hI/AAAAAAAABbg/wRZuGnwHbZw/s400/STM8S_discovery.jpg" width="400" /></a></div>
+<br /></div>
+<div>
+<br /></div>
+<div>
+Because the firmware emulates the&nbsp;<a href="http://www.adafruit.com/products/878">Adafruit Backpack</a>, the <a href="https://github.com/adafruit/Adafruit-LED-Backpack-Library/blob/master/examples/sevenseg/sevenseg.ino">original Adafruit demo sketch</a> can be used for testing. Just be aware that the Arduino I2C clock must first be reduced to 50 kHz by editing the TWI_FREQ variable in the Arduino /<arduino>libraries/Wire/utility/twi.h file. To enable communication at the correct voltage the Arduino SCL and SDA pins, respectively, should be connected via a <a href="http://letsmakerobots.com/node/34444">logic level converter</a> to the wires joined to&nbsp;</arduino>pins 19 and 20 on the display's MCU.</div>
 <br />
-STM8S discovery<br />
-<br />
-The free KickStart edition of "IAR Embedded Workbench for STMicroelectronics STM8" was used for development. STM8S/A Standard Peripherals Library (STM8S_StdPeriph_Driver V2.1.0: stsw-stm8069.zip from the http://www.st.com STM8 firmware page) was also needed.<br />
-<br />
-For one of the voltmeters, I had difficulty programming the MCU it had Read-out Protection activated. I couldn't figure out how to reset the option byte using IAR Embedded Workbench, but it was straightforward to do using STVD.<br />
 <br />
 <h3>
 Resources</h3>
 <br />
-<br />
-Github repository&nbsp;https://github.com/t0mpr1c3/I2C-LED<br />
-<br />
-connectors 3x4 pin female header, 4way male on ribbon cable, strip board<br />
-<br />
-||||||<br />
-|ffff|<br />
-|ffff|<br />
-|ffff|<br />
-|mmmm|<br />
-||||||<br />
-<br />
-<br />
-STM8S discovery as programmer<br />
-<br />
-Plan: use as temperature displays for brewery controller<br />
-<br />
-2 different layouts<br />
-<br />
-<br />
-<br />
+<div>
+<ul>
+<li><a href="https://github.com/t0mpr1c3/I2C-LED">Github repository</a>&nbsp;with&nbsp;details on the hardware, firmware, and documentation</li>
+<li>Detailed&nbsp;<a href="http://www.ba0sh1.com/hacking-a-cheap-led-voltmeter/">blog post</a>&nbsp;for the original voltmeter hack</li>
+<li>Datasheet for the&nbsp;<a href="http://octopart.com/datasheet/stm8s003f3p6-stmicroelectronics-20733190-10633907">STM8S003F3P6</a>&nbsp;micro controller</li>
+<li><a href="http://www.adafruit.com/products/878">Adafruit 4-digit 7-segment LED backpack</a>,&nbsp;<a href="http://learn.adafruit.com/adafruit-led-backpack/">tutorial</a>&nbsp;and&nbsp;<a href="https://github.com/adafruit/Adafruit-LED-Backpack-Library">Arduino library</a></li>
+<li><a href="http://www.iar.com/Products/IAR-Embedded-Workbench/STMicroelectronics-STM8/">IAR Embedded Workbench for STMicroelectronics STM8</a></li>
+<li><a href="http://www.st.com/web/en/catalog/tools/PF247087">STM8S discovery</a>&nbsp;development board</li>
+<li><a href="http://www.st.com/">STMicroelectronics</a>&nbsp;homepage</li>
+</ul>
+</div>
