@@ -1,4 +1,4 @@
-#7-segment LED display with I2C interface
+# 7 segment LED display with I2C interface hacked from cheap voltmeter
 
 The hardware for this project can be bought from http://www.buyincoins.com/item/26010.html ("New 4 Digit 4.5-30V Stm8s003 Master Control Two Lines Red LED Digital Voltmeter") or http://www.buyincoins.com/item/26011.html ("4 Digit 4.5-30V Stm8s003 Master Control Two Lines Blue LED Digital in any way). Please note that I'm not associated with the seller in any way.
 
