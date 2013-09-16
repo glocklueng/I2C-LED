@@ -9,3 +9,5 @@ I adapted a similar project (documented http://www.ba0sh1.com/hacking-a-cheap-le
 A emulation layer for the "Adafruit 4-Digit 7-Segment Display Backpack" http://www.adafruit.com/products/878 is also implemented. Original Adafruit Arduino demo codes are used for testing. Note that in order to run the Arduino code, the I2C clock needs to be reduced to 50 kHz.
 
 The free KickStart edition of "IAR Embedded Workbench for STMicroelectronics STM8" was used for development. STM8S/A Standard Peripherals Library (STM8S_StdPeriph_Driver V2.1.0: stsw-stm8069.zip from the http://www.st.com STM8 firmware page) was also needed.
+
+All hardware files and documentation in this repository are licensed under Creative Commons Attribution-ShareAlike 3.0.
